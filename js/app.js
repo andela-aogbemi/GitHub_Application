@@ -24,6 +24,7 @@ var gitFind = {
 				  $("#users").html(info);
 				  info += '</div>';
 				});
+				
 			}
 };
 gitFind.searchButton.click(gitFind.searchForUser);
