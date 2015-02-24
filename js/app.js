@@ -1,30 +1,60 @@
-var gitFind = {
-			username: $("#user_name"),
-			searchButton: $("#search_button"),
-			searchForUser: function() {
-				var searchInput = gitFind.username.val().trim();
-				console.log(searchInput);
-				var url = "https://api.github.com/users/"+searchInput;
-				$.getJSON(url, function (data) {
-					console.log(data);
-					var info = '<div id="users">';
-						info += '<div id="avatar"><img src="'+data.avatar_url+'" alt="user avatar" width="200" height="200"></div>';
-						info += '<div id="followers">Followers: '+data.followers+'</div>';
-						info += '<div id="following">Following: '+data.following+'</div>';
-						
+$(document).ready(function() {
+	$('#list').hide();
+	$('#numOrg').hide();
+	var gitFind = {
+				username: $("#user_name"),
+				searchButton: $("#search_button"),
+				searchForUser: function() {
+					$('form').submit(function (evt) {
+						evt.preventDefault();
+
+					$("#allRepos").children().remove();
+
+					var searchInput = gitFind.username.val().trim();
+					console.log(searchInput);
+					var url = "https://api.github.com/users/"+searchInput;
 					
-					
-					$.getJSON(data.repos_url, function(repos) {
-						$.each(repos, function(key, value) {
-								console.log(value.url);
-								$('<li>'+value.url+'</li>').appendTo('#allRepos');
-								$("ul").appendTo("#List");
-						}); 
+					$.getJSON(url, function (data) {
+						$('#error').html("");
+						//console.log(data);
+						var info = '<div id="users">';
+							info += '<div id="avatar"><img src="'+data.avatar_url+'" alt="user avatar" width="300" height="300"></div>';
+							info += '<div id="followers">Followers<br /> '+data.followers+'</div>';
+							info += '<div id="following">Following<br /> '+data.following+'</div>';
+							info += '<div id="numRepos">Repositories<br />'+data.public_repos+'</div>';
+							
+						$("#list").show();
+						var repoUrl = "https://api.github.com/users/"+searchInput+"/repos";
+						$.getJSON(repoUrl, function(repos) {
+							$("").appendTo("#links");
+							$.each(repos, function(key, value) {
+									//console.log(value.html_url);
+									$('<li id="links"><a href='+value.html_url+' target="_blank">'+value.name+'</a></li>').appendTo("#allRepos");
+									$("ul").appendTo("#list");
+							}); 
+						});
+
+
+						$("#numOrg").show();
+						var orgUrl = "https://api.github.com/users/"+searchInput+"/orgs";
+						$.getJSON(orgUrl, function(orgs) {
+							//console.log("orgs", orgs);
+							//console.log(orgs.length);
+							$("#orgz").html('<div id="numOrg">Organizations<br />'+orgs.length+'</div>');
+							});
+
+					  $("#users").html(info);
+					  info += '</div>';
+					}).fail(function(error) {
+						//console.log("Error: ",error);
+						$('#error').html('<p>"An error occured. Try again!"</p>');
 					});
-				  $("#users").html(info);
-				  info += '</div>';
-				});
-				
-			}
-};
-gitFind.searchButton.click(gitFind.searchForUser);
+				}); //end of form submit function
+				}
+	};
+	gitFind.searchButton.click(gitFind.searchForUser);
+});
+
+
+
+
