@@ -18,7 +18,7 @@ $(document).ready(function() {
 						$('#error').html("");
 						//console.log(data);
 						var info = '<div id="users">';
-							info += '<div id="avatar"><img src="'+data.avatar_url+'" alt="user avatar" width="300" height="300"></div>';
+							info += '<div id="avatar"><img src="'+data.avatar_url+'" alt="user avatar" width="200" height="200"></div>';
 							info += '<div id="followers">Followers<br /> '+data.followers+'</div>';
 							info += '<div id="following">Following<br /> '+data.following+'</div>';
 							info += '<div id="numRepos">Repositories<br />'+data.public_repos+'</div>';

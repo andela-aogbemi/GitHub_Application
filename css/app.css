@@ -65,11 +65,11 @@ button {
 }
 
 #followers {
-	/*margin-left: -127px;*/
+	margin-left: 80px;
 	height: 50px;
 	margin-top: 30px;
 	width: 150px;
-	border: 1px solid black;
+	border: 1px solid red;
 	border-radius: 7px;
 	font-family:'Montserrat', sans-serif;
 	font-size: 15px;
@@ -78,7 +78,7 @@ button {
 }
 
 #following {
-	margin-left: 140px;
+	margin-left: -110px;
 	margin-top: 30px;
 	height: 50px;
 	width: 150px;
@@ -92,10 +92,16 @@ button {
 }
 
 #numRepos {
-	margin-left: 657px;
+	margin-left: 500px;
+	border-bottom-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
 	height: 50px;
 	width: 150px;
-	margin-top: 70px;
+	margin-top: 150px;
 	border: 1px solid red;
 	border-radius: 10px;
 	font-family:'Montserrat', sans-serif;
@@ -107,8 +113,14 @@ button {
 
 
 #numOrg {
-	margin-left: 763px;
-  margin-top: 28px;
+	border-bottom-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-top-width: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 24px;
+	margin-left: 591px;
 	height: 50px;
 	width: 150px;
 	border: 1px solid red;
@@ -120,8 +132,8 @@ button {
 }
 
 #list {
-	margin-left: 795px;
-	margin-top: -405px;
+	margin-left: 690px;
+	margin-top: -485px;
 	font-weight: bold;
 	font-size: 13px;
 	width: 350px;
